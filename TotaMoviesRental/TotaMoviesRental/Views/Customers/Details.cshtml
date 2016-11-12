@@ -1,0 +1,15 @@
+﻿@using TotaMoviesRental.Models
+@model TotaMoviesRental.Models.Customer
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<dl>
+    <dt>Membership Type</dt>
+    <dd>@Model.MembershipTypeId</dd>
+    <dt>Is Subscribed to News Letter</dt>
+    <dd>@Model.IsSubscribedToNewsLetter</dd>
+</dl>

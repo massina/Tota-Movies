@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TotaMoviesRental.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Membership Type</th>
+            <th>Discount Rate</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.MembershipTypeId</td>
+                <td>@customer.MembershipType.DiscountRate&#37;</td>
+                <td>@Html.ActionLink("Details", "Details", "Customers", new { id = customer.Id }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
