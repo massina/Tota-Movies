@@ -1,8 +1,7 @@
 namespace TotaMoviesRental.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class AddIsSubsribedToCustomer : DbMigration
     {
         public override void Up()
