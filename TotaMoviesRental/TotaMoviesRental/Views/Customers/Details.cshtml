@@ -9,7 +9,12 @@
 <h2>@Model.Name</h2>
 <dl>
     <dt>Membership Type</dt>
-    <dd>@Model.MembershipTypeId</dd>
+    <dd>@Model.MembershipType.Name</dd>
+    @if (Model.Birthdate.HasValue)
+    {
+        <dt>Birthdate</dt>
+        <dd>@Model.Birthdate</dd>
+    }
     <dt>Is Subscribed to News Letter</dt>
     <dd>@Model.IsSubscribedToNewsLetter</dd>
 </dl>
