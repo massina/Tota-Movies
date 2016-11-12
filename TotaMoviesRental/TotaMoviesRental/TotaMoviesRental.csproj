@@ -195,6 +195,14 @@
     <Compile Include="Migrations\201611120435553_AddConvinsionToNameInCustomersTable.Designer.cs">
       <DependentUpon>201611120435553_AddConvinsionToNameInCustomersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611120526276_AddNameToMembershipType.cs" />
+    <Compile Include="Migrations\201611120526276_AddNameToMembershipType.Designer.cs">
+      <DependentUpon>201611120526276_AddNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611120527519_PopulateNameInMembershipType.cs" />
+    <Compile Include="Migrations\201611120527519_PopulateNameInMembershipType.Designer.cs">
+      <DependentUpon>201611120527519_PopulateNameInMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -293,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611120435553_AddConvinsionToNameInCustomersTable.resx">
       <DependentUpon>201611120435553_AddConvinsionToNameInCustomersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611120526276_AddNameToMembershipType.resx">
+      <DependentUpon>201611120526276_AddNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611120527519_PopulateNameInMembershipType.resx">
+      <DependentUpon>201611120527519_PopulateNameInMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
