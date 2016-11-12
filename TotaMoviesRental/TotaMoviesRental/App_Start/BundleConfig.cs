@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace TotaMoviesRental
 {
@@ -24,7 +23,7 @@ namespace TotaMoviesRental
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-luman.css",
                       "~/Content/site.css"));
         }
     }
