@@ -9,7 +9,7 @@ namespace TotaMoviesRental.Models
         {
             var customer = (Customer)validationContext.ObjectInstance;
 
-            if (customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1)
+            if (customer.MembershipTypeId == MembershipType.UnKown || customer.MembershipTypeId == MembershipType.PayAsYouGo)
                 return ValidationResult.Success;
 
             if (customer.Birthdate == null)
@@ -17,7 +17,7 @@ namespace TotaMoviesRental.Models
 
             var age = DateTime.Now.Year - customer.Birthdate.Value.Year;
 
-            return (age > 18) ? ValidationResult.Success 
+            return (age > 18) ? ValidationResult.Success
                 : new ValidationResult("Customer should be at least 18 years old to on a memberhip.");
         }
     }

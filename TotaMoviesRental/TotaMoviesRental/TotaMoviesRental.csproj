@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201611130901334_ChangeBirthdateToNull.Designer.cs">
       <DependentUpon>201611130901334_ChangeBirthdateToNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611131329373_SetNameNotNullInMovies.cs" />
+    <Compile Include="Migrations\201611131329373_SetNameNotNullInMovies.Designer.cs">
+      <DependentUpon>201611131329373_SetNameNotNullInMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -357,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611130901334_ChangeBirthdateToNull.resx">
       <DependentUpon>201611130901334_ChangeBirthdateToNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131329373_SetNameNotNullInMovies.resx">
+      <DependentUpon>201611131329373_SetNameNotNullInMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
