@@ -1,6 +1,4 @@
-﻿@model IEnumerable<TotaMoviesRental.Models.Customer>
-
-@{
+﻿@{
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,25 +12,36 @@
             <th>Delete</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var customer in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
-                <td>@customer.MembershipType.Name</td>
-                <td>
-                    <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
-                </td>
-            </tr>
-        }
-    </tbody>
+    <tbody></tbody>
 </table>
 @section scripts
 {
     <script type="text/javascript">
         $(document)
             .ready(function () {
-                $("#customers").DataTable();
+                var table = $("#customers").DataTable({
+                    ajax: {
+                        url: "/api/customers",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "name",
+                            render: function (data, type, customer) {
+                                return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                            }
+                        },
+                        {
+                            data: "membershipType.name"
+                        },
+                        {
+                            data: "id",
+                            render: function (data) {
+                                return "<button data-customer-id=" + data + " class='btn-link js-delete'>Delete</button>";
+                            }
+                        }
+                    ]
+                });
 
                 $("#customers")
                     .on("click", ".js-delete",
@@ -44,7 +53,7 @@
                                         url: "/api/customers/" + button.attr("data-customer-id"),
                                         method: "DELETE",
                                         success: function () {
-                                            button.parents("tr").remove();
+                                            table.row(button.parents("tr")).remove().draw();
                                         }
                                     });
                                 }
