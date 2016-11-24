@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using TotaMoviesRental.Models;
 
 namespace TotaMoviesRental.Dtos
 {
@@ -26,7 +22,7 @@ namespace TotaMoviesRental.Dtos
         public DateTime ReleaseDate { get; set; }
 
         [Range(1, 20)]
-        public int NumberInStock { get; set; }
+        public byte NumberInStock { get; set; }
 
     }
 }
