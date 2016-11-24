@@ -51,11 +51,6 @@ namespace TotaMoviesRental.Controllers
             return Content($"{year}/{month}");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            _context.Dispose();
-        }
-
         public ActionResult Details(int id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
@@ -118,6 +113,11 @@ namespace TotaMoviesRental.Controllers
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
     }
 }

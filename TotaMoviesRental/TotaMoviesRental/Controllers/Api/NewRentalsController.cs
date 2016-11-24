@@ -35,7 +35,8 @@ namespace TotaMoviesRental.Controllers.Api
             }
 
             _context.SaveChanges();
-            return Ok("New rentals succeded");
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
