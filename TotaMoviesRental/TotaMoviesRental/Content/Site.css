@@ -23,8 +23,8 @@ textarea {
     max-width: 280px;
 }
 
-/* Set validation error message to red*/
-.field-validation-error {
+/* Set validation error and validation summary messages to red*/
+.field-validation-error, .validation-summary-errors {
     color: red;
 }
 
@@ -32,3 +32,4 @@ textarea {
 .input-validation-error {
     border: 2px solid red;
 }
+

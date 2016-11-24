@@ -20,17 +20,22 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Customer.Birthdate)
-                @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Customer.Birthdate)
-            </div>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
+                <div class='input-group date' id='birthdatepicker'>
+                    @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="fa fa-calendar"></span>
                     </span>
                 </div>
+                @Html.ValidationMessageFor(m => m.Customer.Birthdate)
             </div>
+            @*<div class="form-group">
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>*@
             <div class="form-group">
                 @Html.LabelFor(m => m.Customer.MembershipTypeId)
                 @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
@@ -53,7 +58,9 @@
     <script type="text/javascript">
         $(document)
             .ready(function () {
-                $("#datetimepicker2").datetimepicker();
+                $("#birthdatepicker").datetimepicker({
+                    format: "d MMM YYYY"
+                });
             });
     </script>
 
