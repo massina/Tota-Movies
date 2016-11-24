@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using TotaMoviesRental.Dtos;
 using TotaMoviesRental.Models;
-using System.Data.Entity;
 
 namespace TotaMoviesRental.Controllers.Api
 {
@@ -20,7 +20,7 @@ namespace TotaMoviesRental.Controllers.Api
         // GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            return Ok(_context.Customers.Include(c=>c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>));
+            return Ok(_context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>));
         }
 
         // GET /api/customers/1
@@ -75,6 +75,11 @@ namespace TotaMoviesRental.Controllers.Api
             _context.Customers.Remove(customer);
             _context.SaveChanges();
             return Ok();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
     }
 }

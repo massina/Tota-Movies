@@ -77,5 +77,10 @@ namespace TotaMoviesRental.Controllers.Api
             _context.SaveChanges();
             return Ok();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
     }
 }
