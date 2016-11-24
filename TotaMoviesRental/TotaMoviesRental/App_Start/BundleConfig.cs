@@ -8,12 +8,15 @@ namespace TotaMoviesRental
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                        "~/Scripts/jquery-{version}.js",
+                         "~/Scripts/jquery-{version}.js",
+                         "~/Scripts/moment.js",
                          "~/Scripts/bootstrap.js",
                          "~/Scripts/bootbox.js",
                          "~/Scripts/respond.js",
                          "~/Scripts/datatables/jquery.datatables.js",
-                         "~/Scripts/datatables/datatables.bootstrap.js"));
+                         "~/Scripts/datatables/datatables.bootstrap.js",
+                         "~/Scripts/bootstrap-datetimepicker.js"
+                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -24,8 +27,11 @@ namespace TotaMoviesRental
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      //"~/Content/bootstrap.css",
                       "~/Content/bootstrap-luman.css",
+                      "~/Content/datatables/css/bootstrap-datetimepicker.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/site.css"));
         }
     }

@@ -1,9 +1,11 @@
 ﻿@{
     ViewBag.Title = "Customers";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Customers</h2>
+<p>
+    @Html.ActionLink("New Customer", "New", "Customers", new { @class = "btn btn-primary btn-lg" })
+</p>
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
