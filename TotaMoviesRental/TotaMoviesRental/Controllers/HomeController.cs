@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace TotaMoviesRental.Controllers
 {
     public class HomeController : Controller
     {
+        // [OutputCache(Duration = 60, Location = OutputCacheLocation.Client)]
+        // [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)] // Disable caching for this action.
         public ActionResult Index()
         {
             return View();
