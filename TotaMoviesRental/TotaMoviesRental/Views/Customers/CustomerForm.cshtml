@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "New Customer";
 }
+
+<h2>ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-3">
-        <h2>New Customer</h2>
         @using (Html.BeginForm("Save", "Customers"))
         {
             @Html.AntiForgeryToken()
@@ -59,7 +60,7 @@
         $(document)
             .ready(function () {
                 $("#birthdatepicker").datetimepicker({
-                    format: "d MMM YYYY"
+                    format: "D MMM YYYY"
                 });
             });
     </script>
