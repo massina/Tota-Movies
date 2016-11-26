@@ -17,6 +17,7 @@ namespace TotaMoviesRental.Models
         public Genre Genre { get; set; }
 
         [Required]
+        [Display(Name = "Gendre")]
         public byte GenreId { get; set; }
 
         public DateTime ReleaseDate { get; set; }

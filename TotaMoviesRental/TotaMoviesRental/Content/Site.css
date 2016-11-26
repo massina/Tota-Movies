@@ -33,3 +33,9 @@ textarea {
     border: 2px solid red;
 }
 
+
+/* Booststrap averrides */
+.navbar-brand {
+    font-family: Lobster;
+    font-size: x-large;
+}

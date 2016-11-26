@@ -26,7 +26,8 @@ namespace TotaMoviesRental.Controllers
             var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = _context.MembershipTypes.ToList(),
-                Customer = new Customer()
+                Customer = new Customer(),
+                Title = "New Customer"
             };
 
             return View("CustomerForm", viewModel);
@@ -40,7 +41,8 @@ namespace TotaMoviesRental.Controllers
             var viewModel = new CustomerFormViewModel
             {
                 Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
+                MembershipTypes = _context.MembershipTypes.ToList(),
+                Title = "Edit Customer"
             };
 
             return View("CustomerForm", viewModel);
@@ -55,7 +57,8 @@ namespace TotaMoviesRental.Controllers
                 var viewModel = new CustomerFormViewModel
                 {
                     Customer = customer,
-                    MembershipTypes = _context.MembershipTypes.ToList()
+                    MembershipTypes = _context.MembershipTypes.ToList(),
+                    Title = "Save Customer"
                 };
 
                 return View("CustomerForm", viewModel);
