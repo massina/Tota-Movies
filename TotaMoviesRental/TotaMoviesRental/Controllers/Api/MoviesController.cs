@@ -18,9 +18,20 @@ namespace TotaMoviesRental.Controllers.Api
         }
 
         // GET /api/movies
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            return Ok(_context.Movies.Include(m => m.Genre).ToList().Select(Mapper.Map<Movie, MovieDto>));
+            var movieQuery = _context.Movies
+                .Include(m => m.Genre)
+                .Where(m => m.NumberAvailable > 0);
+
+            if (!string.IsNullOrWhiteSpace(query))
+                movieQuery = movieQuery.Where(m => m.Name.Contains(query));
+
+            var movieDtos = movieQuery
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
+
+            return Ok(movieDtos);
         }
 
         // GET /api/movies/1
@@ -43,6 +54,7 @@ namespace TotaMoviesRental.Controllers.Api
 
             var movie = Mapper.Map<MovieDto, Movie>(movieDto);
             movie.DateAdded = DateTime.Now;
+            movie.NumberAvailable = movie.NumberInStock; // TODO: Remove this once you fix it in DbMigrtation.
             _context.Movies.Add(movie);
             _context.SaveChanges();
 

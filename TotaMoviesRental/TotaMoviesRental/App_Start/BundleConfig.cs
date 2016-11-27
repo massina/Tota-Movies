@@ -15,7 +15,9 @@ namespace TotaMoviesRental
                          "~/Scripts/respond.js",
                          "~/Scripts/datatables/jquery.datatables.js",
                          "~/Scripts/datatables/datatables.bootstrap.js",
-                         "~/Scripts/bootstrap-datetimepicker.js"
+                         "~/Scripts/bootstrap-datetimepicker.js",
+                         "~/Scripts/typeahead.bundle.js",
+                         "~/Scripts/toastr.js"
                          ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -32,6 +34,8 @@ namespace TotaMoviesRental
                       "~/Content/datatables/css/bootstrap-datetimepicker.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/font-awesome.css",
+                      "~/Content/typeahead.css",
+                      "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
     }

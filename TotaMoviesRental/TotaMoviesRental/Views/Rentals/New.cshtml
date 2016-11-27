@@ -1,0 +1,130 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "New Rental";
+}
+
+<h2 class="text-center text-primary">New Rental</h2>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="well">
+            <form id="newRental">
+                @*<div class="form-group">
+                        <label for="customer">Customer</label>
+                        <div class="tt-container">
+                            <input id="customer" data-rule-validCustomer="true" type="text" value="" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie">Movies</label>
+                        <div class="tt-container">
+                            <input id="movie" type="text" value="" class="form-control" />
+                        </div>
+                    </div>*@
+                <div class="form-group">
+                    <label for="customer">Customer</label>
+                    <input id="customer" name="customer" data-rule-validCustomer="true" type="text" value="" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="movie">Movies</label>
+                    <input id="movie" name="movie" data-rule-validMovie="true" type="text" value="" class="form-control" />
+                </div>
+                <ul id="movies" class="list-group"></ul>
+                <button class="btn btn-primary btn-block"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var vm = {
+                moviesIds: []
+            };
+
+            var customers = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/customers?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#customer').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'customers',
+                display: 'name',
+                source: customers
+            }).on("typeahead:select", function (e, customer) {
+                console.log(customer);
+                //$("#customer").typeahead("val", "");
+                vm.customerId = customer.id;
+            });
+
+            var movies = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/movies?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('#movie').typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: 'movies',
+                display: 'name',
+                source: movies
+            }).on("typeahead:select", function (e, movie) {
+                console.log(movie);
+                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
+                $("#movie").typeahead("val", "");
+                vm.moviesIds.push(movie.id);
+            });
+
+            $.validator.addMethod("validCustomer",
+                function () {
+                    return vm.customerId && vm.customerId !== 0;
+                }, "Please select valid customer.");
+
+            $.validator.addMethod("validMovie",
+                function () {
+                    return vm.moviesIds.length > 0;
+                }, "Please select at least one movie.");
+
+            var validator = $("#newRental").validate({
+                submitHandler: function () {
+                    console.log(vm);
+                    $.ajax({
+                        url: "/api/newrentals",
+                        method: "POST",
+                        data: vm
+                    }).done(function () {
+                        toastr.success("Rentals successfully recorded.");
+                        $("#customer").typeahead("val", "");
+                        //$("#movie").typeahead("val", "");
+                        $("#movies").empty();
+
+                        vm = { moviesIds: [] };
+
+                        validator.resetForm();
+                    }).fail(function () {
+                        toastr.error("Something unexpected happened!");
+                    });
+
+                    return false;
+                }
+            });
+        });
+    </script>
+}

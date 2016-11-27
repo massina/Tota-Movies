@@ -17,14 +17,14 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 /* Set validation error and validation summary messages to red*/
-.field-validation-error, .validation-summary-errors {
+.field-validation-error, .validation-summary-errors, label.error {
     color: red;
 }
 
@@ -36,6 +36,6 @@ textarea {
 
 /* Booststrap averrides */
 .navbar-brand {
-    font-family: Lobster;
+    font-family: Lobster, arial;
     font-size: x-large;
 }

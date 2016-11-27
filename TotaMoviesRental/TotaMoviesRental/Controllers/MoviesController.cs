@@ -99,6 +99,7 @@ namespace TotaMoviesRental.Controllers
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
+                movie.NumberAvailable = movie.NumberInStock; // TODO: Remove this once you fix it in DbMigrtation.
                 _context.Movies.Add(movie);
             }
             else

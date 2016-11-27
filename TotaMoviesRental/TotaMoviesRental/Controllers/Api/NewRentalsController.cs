@@ -15,10 +15,11 @@ namespace TotaMoviesRental.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
+        // POST /api/newrentals
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
-            if (newRental.MoviesIds.Count == 0)
+            if (newRental.MoviesIds == null || newRental.MoviesIds.Count == 0)
                 return BadRequest("No movie Ids have been given.");
 
             var customer = _context.Customers
