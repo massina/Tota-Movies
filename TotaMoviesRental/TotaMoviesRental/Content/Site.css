@@ -23,7 +23,7 @@ textarea {
     max-width: 280px;
 }*/
 
-/* Set validation error and validation summary messages to red*/
+/* Set validation error and validation summary messages to red */
 .field-validation-error, .validation-summary-errors, label.error {
     color: red;
 }
@@ -31,6 +31,11 @@ textarea {
 /* Set input validation error */
 .input-validation-error {
     border: 2px solid red;
+}
+
+/* fix UI bug when submiting New Rental form */
+label#-error {
+    display: none !important;
 }
 
 
