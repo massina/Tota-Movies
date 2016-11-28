@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using TotaMoviesRental.DAL;
 using TotaMoviesRental.Models;
 using TotaMoviesRental.ViewModels;
 

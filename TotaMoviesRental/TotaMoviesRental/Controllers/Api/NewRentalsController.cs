@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using TotaMoviesRental.DAL;
 using TotaMoviesRental.Dtos;
 using TotaMoviesRental.Models;
 

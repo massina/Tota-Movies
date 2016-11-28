@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using TotaMoviesRental.Models;
 
-namespace TotaMoviesRental.Models
+namespace TotaMoviesRental.DAL
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

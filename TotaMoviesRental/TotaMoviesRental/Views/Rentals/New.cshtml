@@ -7,21 +7,9 @@
 <h2 class="text-center text-primary">New Rental</h2>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
         <div class="well">
             <form id="newRental">
-                @*<div class="form-group">
-                        <label for="customer">Customer</label>
-                        <div class="tt-container">
-                            <input id="customer" data-rule-validCustomer="true" type="text" value="" class="form-control" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="movie">Movies</label>
-                        <div class="tt-container">
-                            <input id="movie" type="text" value="" class="form-control" />
-                        </div>
-                    </div>*@
                 <div class="form-group">
                     <label for="customer">Customer</label>
                     <input id="customer" name="customer" data-rule-validCustomer="true" type="text" value="" class="form-control" />
@@ -43,10 +31,12 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            // The client view model, which will be sent to server.
             var vm = {
                 moviesIds: []
             };
 
+            // Grab an instance of Bloodhound suggesions engine, after setting its configurations.
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -56,6 +46,7 @@
                 }
             });
 
+            // Hook typeahead to form input, and set its configurations.
             $('#customer').typeahead({
                 minLength: 3,
                 highlight: true
@@ -64,8 +55,6 @@
                 display: 'name',
                 source: customers
             }).on("typeahead:select", function (e, customer) {
-                console.log(customer);
-                //$("#customer").typeahead("val", "");
                 vm.customerId = customer.id;
             });
 
@@ -86,7 +75,6 @@
                 display: 'name',
                 source: movies
             }).on("typeahead:select", function (e, movie) {
-                console.log(movie);
                 $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
                 $("#movie").typeahead("val", "");
                 vm.moviesIds.push(movie.id);
@@ -106,25 +94,33 @@
                 rules: {
                     customer: "required"
                 },
+                messages: {
+                    customer: "Customer is required."
+                },
                 submitHandler: function () {
-                    console.log(vm);
                     $.ajax({
                         url: "/api/newrentals",
                         method: "POST",
                         data: vm
                     }).done(function () {
+                        // Display success toastr message.
                         toastr.success("Rentals successfully recorded.");
+
+                        // Reset form values.
                         $("#customer").typeahead("val", "");
-                        //$("#movie").typeahead("val", "");
                         $("#movies").empty();
 
+                        // Re-instantiate view model.
                         vm = { moviesIds: [] };
 
+                        // Reset the controlled form.
                         validator.resetForm();
                     }).fail(function () {
+                        // Display an error toastr message.
                         toastr.error("Something unexpected happened!");
                     });
 
+                    // Prevent the form from normal submitting.
                     return false;
                 }
             });

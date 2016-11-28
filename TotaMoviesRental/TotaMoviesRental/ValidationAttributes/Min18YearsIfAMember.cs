@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TotaMoviesRental.Models;
 
-namespace TotaMoviesRental.Models
+namespace TotaMoviesRental.ValidationAttributes
 {
     public class Min18YearsIfAMember : ValidationAttribute
     {
