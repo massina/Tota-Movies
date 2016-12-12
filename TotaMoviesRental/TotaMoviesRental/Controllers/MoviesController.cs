@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Web.Mvc;
-using TotaMoviesRental.DAL;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
+using TotaMoviesRental.Core.Repositories;
 using TotaMoviesRental.ViewModels;
 
 namespace TotaMoviesRental.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MoviesController()
+        public MoviesController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index()
@@ -46,6 +44,7 @@ namespace TotaMoviesRental.Controllers
         {
             if (!year.HasValue)
                 year = DateTime.Now.Year;
+
             if (!month.HasValue)
                 month = 1;
 
@@ -54,9 +53,11 @@ namespace TotaMoviesRental.Controllers
 
         public ActionResult Details(int id)
         {
-            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            var movie = _unitOfWork.Movies.GetMovieWithGenre(id);
+
             if (movie == null)
                 return HttpNotFound();
+
             return View(movie);
         }
 
@@ -64,7 +65,7 @@ namespace TotaMoviesRental.Controllers
         {
             var viewModel = new MovieFormViewModel
             {
-                Genres = _context.Genres.ToList()
+                Genres = _unitOfWork.Genres.GetAll()
             };
 
             return View("MovieForm", viewModel);
@@ -72,12 +73,14 @@ namespace TotaMoviesRental.Controllers
 
         public ActionResult Edit(int id)
         {
-            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            var movie = _unitOfWork.Movies.SingleOrDefault(m => m.Id == id);
+
             if (movie == null)
                 return HttpNotFound();
+
             var viewModel = new MovieFormViewModel(movie)
             {
-                Genres = _context.Genres.ToList()
+                Genres = _unitOfWork.Genres.GetAll()
             };
 
             return View("MovieForm", viewModel);
@@ -91,7 +94,7 @@ namespace TotaMoviesRental.Controllers
             {
                 var viewModel = new MovieFormViewModel(movie)
                 {
-                    Genres = _context.Genres.ToList()
+                    Genres = _unitOfWork.Genres.GetAll()
                 };
 
                 return View("MovieForm", viewModel);
@@ -100,12 +103,12 @@ namespace TotaMoviesRental.Controllers
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
-                movie.NumberAvailable = movie.NumberInStock; // TODO: Remove this once you fix it in DbMigrtation.
-                _context.Movies.Add(movie);
+                movie.NumberAvailable = movie.NumberInStock; // TODO: Remove this once you fixed it in DbMigrtation.
+                _unitOfWork.Movies.Add(movie);
             }
             else
             {
-                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                var movieInDb = _unitOfWork.Movies.Single(m => m.Id == movie.Id);
                 movieInDb.GenreId = movie.GenreId;
                 movieInDb.NumberInStock = movie.NumberInStock;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
@@ -113,13 +116,16 @@ namespace TotaMoviesRental.Controllers
                 movieInDb.PosterImageUrl = movie.PosterImageUrl;
                 movieInDb.YoutubeTrailerUrl = movie.YoutubeTrailerUrl;
             }
-            _context.SaveChanges();
+
+            _unitOfWork.Complete();
+
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            _unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

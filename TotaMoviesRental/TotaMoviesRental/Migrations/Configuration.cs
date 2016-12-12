@@ -1,4 +1,4 @@
-using TotaMoviesRental.DAL;
+using TotaMoviesRental.Persistence;
 
 namespace TotaMoviesRental.Migrations
 {

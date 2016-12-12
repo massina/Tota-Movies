@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
-using TotaMoviesRental.DAL;
-using TotaMoviesRental.Dtos;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Dtos;
+using TotaMoviesRental.Core.Models;
+using TotaMoviesRental.Persistence;
 
 namespace TotaMoviesRental.Controllers.Api
 {

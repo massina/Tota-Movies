@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using TotaMoviesRental.DAL;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
+using TotaMoviesRental.Persistence;
 using TotaMoviesRental.ViewModels;
 
 namespace TotaMoviesRental.Controllers
@@ -26,9 +26,7 @@ namespace TotaMoviesRental.Controllers
         {
             var viewModel = new CustomerFormViewModel
             {
-                MembershipTypes = _context.MembershipTypes.ToList(),
-                Customer = new Customer(),
-                Title = "New Customer"
+                MembershipTypes = _context.MembershipTypes.ToList()
             };
 
             return View("CustomerForm", viewModel);
@@ -37,13 +35,13 @@ namespace TotaMoviesRental.Controllers
         public ActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
             if (customer == null)
                 return HttpNotFound();
-            var viewModel = new CustomerFormViewModel
+
+            var viewModel = new CustomerFormViewModel(customer)
             {
-                Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList(),
-                Title = "Edit Customer"
+                MembershipTypes = _context.MembershipTypes.ToList()
             };
 
             return View("CustomerForm", viewModel);
@@ -55,11 +53,9 @@ namespace TotaMoviesRental.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new CustomerFormViewModel
+                var viewModel = new CustomerFormViewModel(customer)
                 {
-                    Customer = customer,
-                    MembershipTypes = _context.MembershipTypes.ToList(),
-                    Title = "Save Customer"
+                    MembershipTypes = _context.MembershipTypes.ToList()
                 };
 
                 return View("CustomerForm", viewModel);

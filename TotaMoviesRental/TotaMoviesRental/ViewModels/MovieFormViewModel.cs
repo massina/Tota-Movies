@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
 
 namespace TotaMoviesRental.ViewModels
 {

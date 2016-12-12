@@ -1,0 +1,13 @@
+﻿.navbar-inverse {
+    background-color: #2e0565;
+    background-color: rgba(46, 5, 101, 0.86);
+    border-color: #110225;
+    border-color: rgba(17, 2, 37, 0.86);
+}
+.navbar-inverse .navbar-brand {
+    color: rgb(228, 221, 0);
+}
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #005aff;
+    background-color: transparent;
+}

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TotaMoviesRental.Dtos;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Dtos;
+using TotaMoviesRental.Core.Models;
 
 namespace TotaMoviesRental.App_Start
 {

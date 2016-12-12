@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TotaMoviesRental.Dtos
+namespace TotaMoviesRental.Core.Dtos
 {
     public class NewRentalDto
     {

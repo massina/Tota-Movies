@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TotaMoviesRental.Dtos
+namespace TotaMoviesRental.Core.Dtos
 {
     public class CustomerDto
     {

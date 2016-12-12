@@ -1,4 +1,4 @@
-﻿namespace TotaMoviesRental.Dtos
+﻿namespace TotaMoviesRental.Core.Dtos
 {
     public class MembershipTypeDto
     {

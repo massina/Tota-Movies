@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using TotaMoviesRental.Models;
 using TotaMoviesRental.ViewModels;
 
 namespace TotaMoviesRental.Controllers

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
 
 namespace TotaMoviesRental.ViewModels
 {

@@ -5,8 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using TotaMoviesRental.DAL;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
+using TotaMoviesRental.Persistence;
 
 namespace TotaMoviesRental
 {

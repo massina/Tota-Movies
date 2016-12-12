@@ -1,6 +1,6 @@
-﻿namespace TotaMoviesRental.Models
+﻿namespace TotaMoviesRental.Core.Dtos
 {
-    public class Genre
+    public class GenreDto
     {
         public byte Id { get; set; }
         public string Name { get; set; }

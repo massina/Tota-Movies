@@ -7,6 +7,12 @@ namespace TotaMoviesRental
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app/services/customerService.js",
+                "~/Scripts/app/controllers/customersController.js",
+                "~/Scripts/app/app.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                          "~/Scripts/jquery-{version}.js",
                          "~/Scripts/moment.js",
@@ -36,6 +42,7 @@ namespace TotaMoviesRental
                       "~/Content/font-awesome.css",
                       "~/Content/typeahead.css",
                       "~/Content/toastr.css",
+                      "~/Content/bootstrap-overrides.css",
                       "~/Content/site.css"));
         }
     }

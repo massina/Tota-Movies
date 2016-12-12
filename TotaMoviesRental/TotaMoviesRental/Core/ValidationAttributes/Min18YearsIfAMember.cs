@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
 
-namespace TotaMoviesRental.ValidationAttributes
+namespace TotaMoviesRental.Core.ValidationAttributes
 {
     public class Min18YearsIfAMember : ValidationAttribute
     {
@@ -19,7 +19,7 @@ namespace TotaMoviesRental.ValidationAttributes
             var age = DateTime.Now.Year - customer.Birthdate.Value.Year;
 
             return (age > 18) ? ValidationResult.Success
-                : new ValidationResult("Customer should be at least 18 years old to on a memberhip.");
+                : new ValidationResult("Customer should be at least 18 years old to own a memberhip.");
         }
     }
 }

@@ -1,22 +1,19 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using TotaMoviesRental.ValidationAttributes;
+using TotaMoviesRental.Core.ValidationAttributes;
 
-namespace TotaMoviesRental.Models
+namespace TotaMoviesRental.Core.Models
 {
     public class Customer
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(30)]
         public string Name { get; set; }
 
         public bool IsSubscribedToNewsLetter { get; set; }
 
         public MembershipType MembershipType { get; set; }
 
-        [Required]
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
 

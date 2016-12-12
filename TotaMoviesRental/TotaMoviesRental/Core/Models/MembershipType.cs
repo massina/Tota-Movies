@@ -1,4 +1,4 @@
-namespace TotaMoviesRental.Models
+namespace TotaMoviesRental.Core.Models
 {
     public class MembershipType
     {

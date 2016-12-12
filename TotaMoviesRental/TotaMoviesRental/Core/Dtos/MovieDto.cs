@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TotaMoviesRental.Models
+namespace TotaMoviesRental.Core.Dtos
 {
-    public class Movie
+    public class MovieDto
     {
         public int Id { get; set; }
 
@@ -14,19 +14,15 @@ namespace TotaMoviesRental.Models
 
         public string PosterImageUrl { get; set; }
 
-        public Genre Genre { get; set; }
-
         [Required]
-        [Display(Name = "Gendre")]
         public byte GenreId { get; set; }
+
+        public GenreDto Genre { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
         [Range(1, 20)]
         public byte NumberInStock { get; set; }
 
-        public byte NumberAvailable { get; set; }
-
-        public DateTime DateAdded { get; set; }
     }
 }

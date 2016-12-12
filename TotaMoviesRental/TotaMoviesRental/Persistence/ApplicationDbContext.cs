@@ -1,8 +1,9 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using TotaMoviesRental.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using TotaMoviesRental.Core.Models;
+using TotaMoviesRental.Persistence.EntityConfigurations;
 
-namespace TotaMoviesRental.DAL
+namespace TotaMoviesRental.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -14,6 +15,15 @@ namespace TotaMoviesRental.DAL
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new RentalConfigurations());
+            modelBuilder.Configurations.Add(new CustomerConfigurations());
+            modelBuilder.Configurations.Add(new MovieConfigurations());
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Customer> Customers { get; set; }

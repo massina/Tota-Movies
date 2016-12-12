@@ -10,8 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using TotaMoviesRental.DAL;
-using TotaMoviesRental.Models;
+using TotaMoviesRental.Core.Models;
+using TotaMoviesRental.Persistence;
 
 namespace TotaMoviesRental
 {
