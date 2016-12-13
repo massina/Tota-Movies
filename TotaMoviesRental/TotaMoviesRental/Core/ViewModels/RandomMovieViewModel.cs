@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TotaMoviesRental.Core.Models;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
     public class RandomMovieViewModel
     {

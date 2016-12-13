@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TotaMoviesRental.Core.Models;
-using TotaMoviesRental.ViewModels;
+using TotaMoviesRental.Core.ViewModels;
 
 namespace TotaMoviesRental.Controllers
 {

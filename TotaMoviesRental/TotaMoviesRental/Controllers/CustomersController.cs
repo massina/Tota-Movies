@@ -1,19 +1,17 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using TotaMoviesRental.Core;
 using TotaMoviesRental.Core.Models;
-using TotaMoviesRental.Persistence;
-using TotaMoviesRental.ViewModels;
+using TotaMoviesRental.Core.ViewModels;
 
 namespace TotaMoviesRental.Controllers
 {
     public class CustomersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CustomersController()
+        public CustomersController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Customers
@@ -26,7 +24,7 @@ namespace TotaMoviesRental.Controllers
         {
             var viewModel = new CustomerFormViewModel
             {
-                MembershipTypes = _context.MembershipTypes.ToList()
+                MembershipTypes = _unitOfWork.MembershipTypes.GetAll()
             };
 
             return View("CustomerForm", viewModel);
@@ -34,14 +32,14 @@ namespace TotaMoviesRental.Controllers
 
         public ActionResult Edit(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _unitOfWork.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
 
             var viewModel = new CustomerFormViewModel(customer)
             {
-                MembershipTypes = _context.MembershipTypes.ToList()
+                MembershipTypes = _unitOfWork.MembershipTypes.GetAll()
             };
 
             return View("CustomerForm", viewModel);
@@ -55,29 +53,29 @@ namespace TotaMoviesRental.Controllers
             {
                 var viewModel = new CustomerFormViewModel(customer)
                 {
-                    MembershipTypes = _context.MembershipTypes.ToList()
+                    MembershipTypes = _unitOfWork.MembershipTypes.GetAll()
                 };
 
                 return View("CustomerForm", viewModel);
             }
 
             if (customer.Id == 0)
-                _context.Customers.Add(customer);
+                _unitOfWork.Customers.Add(customer);
             else
             {
-                var customerInDb = _context.Customers.Single(m => m.Id == customer.Id);
+                var customerInDb = _unitOfWork.Customers.Single(m => m.Id == customer.Id);
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
             }
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
+            var customer = _unitOfWork.Customers.GetCustomerWithGenre(id);
             if (customer == null)
                 return HttpNotFound("The customer you are looing for is not exsists");
             return View(customer);
@@ -85,7 +83,7 @@ namespace TotaMoviesRental.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            _unitOfWork.Dispose();
         }
     }
 }

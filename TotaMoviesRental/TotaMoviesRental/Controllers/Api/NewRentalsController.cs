@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using TotaMoviesRental.Core;
 using TotaMoviesRental.Core.Dtos;
 using TotaMoviesRental.Core.Models;
-using TotaMoviesRental.Persistence;
 
 namespace TotaMoviesRental.Controllers.Api
 {
     public class NewRentalsController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public NewRentalsController()
+        public NewRentalsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         // POST /api/newrentals
@@ -23,14 +23,14 @@ namespace TotaMoviesRental.Controllers.Api
             if (newRental.MoviesIds == null || newRental.MoviesIds.Count == 0)
                 return BadRequest("No movie Ids have been given.");
 
-            var customer = _context.Customers
+            var customer = _unitOfWork.Customers
                 .SingleOrDefault(c => c.Id == newRental.CustomerId);
 
             if (customer == null)
                 return BadRequest("Customer Id is invalid.");
 
-            var movies = _context.Movies
-                .Where(m => newRental.MoviesIds.Contains(m.Id)).ToList();
+            var movies = _unitOfWork.Movies
+                .Find(m => newRental.MoviesIds.Contains(m.Id)).ToList();
 
             if (movies.Count != newRental.MoviesIds.Count)
                 return BadRequest("One or more movie Ids are invalid.");
@@ -49,18 +49,18 @@ namespace TotaMoviesRental.Controllers.Api
                     DateRented = DateTime.Now
                 };
 
-                _context.Rentals.Add(rental);
+                _unitOfWork.Rentals.Add(rental);
 
             }
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
 
             return Ok();
         }
 
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            _unitOfWork.Dispose();
         }
     }
 }

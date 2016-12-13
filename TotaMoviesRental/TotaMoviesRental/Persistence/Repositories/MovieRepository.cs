@@ -36,6 +36,18 @@ namespace TotaMoviesRental.Persistence.Repositories
                     .ToList();
         }
 
+        public IEnumerable<Movie> GetMoviesWithGenres(string query)
+        {
+            var movieQuery = ApplicationDbContext.Movies
+               .Include(m => m.Genre)
+               .Where(m => m.NumberAvailable > 0);
+
+            if (!string.IsNullOrWhiteSpace(query))
+                movieQuery = movieQuery.Where(m => m.Name.Contains(query));
+
+            return movieQuery.ToList();
+        }
+
         public Movie GetMovieWithGenre(int id)
         {
             return ApplicationDbContext.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);

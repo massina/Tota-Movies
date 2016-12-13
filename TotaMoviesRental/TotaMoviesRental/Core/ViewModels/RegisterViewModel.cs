@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
-    public class ResetPasswordViewModel
+    public class RegisterViewModel
     {
         [Required]
         [EmailAddress]
@@ -19,7 +19,5 @@ namespace TotaMoviesRental.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        public string Code { get; set; }
     }
 }

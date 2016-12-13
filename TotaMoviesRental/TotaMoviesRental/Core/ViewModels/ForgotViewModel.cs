@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ForgotViewModel
     {
         [Required]
         [Display(Name = "Email")]

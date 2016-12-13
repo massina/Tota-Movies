@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
     public class ManageLoginsViewModel
     {

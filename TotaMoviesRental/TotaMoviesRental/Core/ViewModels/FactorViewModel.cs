@@ -1,4 +1,4 @@
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
     public class FactorViewModel
     {

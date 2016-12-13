@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
     public class IndexViewModel
     {

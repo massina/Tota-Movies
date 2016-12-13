@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
     public class VerifyCodeViewModel
     {

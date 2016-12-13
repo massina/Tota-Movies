@@ -7,6 +7,7 @@ namespace TotaMoviesRental.Core.Repositories
     {
         IEnumerable<Movie> GetMoviesByReleaseDate(int? year, int? month);
         IEnumerable<Movie> GetMoviesWithGenres(int pageIndex, int pageSize);
+        IEnumerable<Movie> GetMoviesWithGenres(string query);
         Movie GetMovieWithGenre(int id);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using TotaMoviesRental.Core;
 using TotaMoviesRental.Core.Models;
 using TotaMoviesRental.Core.Repositories;
-using TotaMoviesRental.ViewModels;
+using TotaMoviesRental.Core.ViewModels;
 
 namespace TotaMoviesRental.Controllers
 {

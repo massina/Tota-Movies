@@ -1,35 +1,27 @@
 ﻿using AutoMapper;
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using TotaMoviesRental.Core;
 using TotaMoviesRental.Core.Dtos;
 using TotaMoviesRental.Core.Models;
-using TotaMoviesRental.Persistence;
 
 namespace TotaMoviesRental.Controllers.Api
 {
     public class MoviesController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MoviesController()
+        public MoviesController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         // GET /api/movies
         public IHttpActionResult GetMovies(string query = null)
         {
-            var movieQuery = _context.Movies
-                .Include(m => m.Genre)
-                .Where(m => m.NumberAvailable > 0);
-
-            if (!string.IsNullOrWhiteSpace(query))
-                movieQuery = movieQuery.Where(m => m.Name.Contains(query));
-
-            var movieDtos = movieQuery
-                .ToList()
+            var movieDtos = _unitOfWork.Movies
+                .GetMoviesWithGenres(query)
                 .Select(Mapper.Map<Movie, MovieDto>);
 
             return Ok(movieDtos);
@@ -38,7 +30,7 @@ namespace TotaMoviesRental.Controllers.Api
         // GET /api/movies/1
         public IHttpActionResult GetMovie(int id)
         {
-            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            var movie = _unitOfWork.Movies.SingleOrDefault(c => c.Id == id);
 
             if (movie == null)
                 return NotFound();
@@ -56,8 +48,8 @@ namespace TotaMoviesRental.Controllers.Api
             var movie = Mapper.Map<MovieDto, Movie>(movieDto);
             movie.DateAdded = DateTime.Now;
             movie.NumberAvailable = movie.NumberInStock; // TODO: Remove this once you fix it in DbMigrtation.
-            _context.Movies.Add(movie);
-            _context.SaveChanges();
+            _unitOfWork.Movies.Add(movie);
+            _unitOfWork.Complete();
 
             movieDto.Id = movie.Id;
             return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);
@@ -69,13 +61,13 @@ namespace TotaMoviesRental.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var movieInDb = _context.Movies.SingleOrDefault(c => c.Id == id);
+            var movieInDb = _unitOfWork.Movies.SingleOrDefault(c => c.Id == id);
             if (movieInDb == null)
                 return NotFound();
 
             Mapper.Map(movieDto, movieInDb);
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return Ok();
         }
 
@@ -83,17 +75,17 @@ namespace TotaMoviesRental.Controllers.Api
         [HttpDelete]
         public IHttpActionResult DeleteMovie(int id)
         {
-            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            var movie = _unitOfWork.Movies.SingleOrDefault(c => c.Id == id);
             if (movie == null)
                 return NotFound();
-            _context.Movies.Remove(movie);
-            _context.SaveChanges();
+            _unitOfWork.Movies.Remove(movie);
+            _unitOfWork.Complete();
             return Ok();
         }
 
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            _unitOfWork.Dispose();
         }
     }
 }

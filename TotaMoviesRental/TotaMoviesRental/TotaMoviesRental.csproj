@@ -248,6 +248,7 @@
     <Compile Include="Core\Dtos\MembershipTypeDto.cs" />
     <Compile Include="Core\Dtos\MovieDto.cs" />
     <Compile Include="Core\Dtos\NewRentalDto.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Models\ApplicationUser.cs" />
     <Compile Include="Core\Models\Customer.cs" />
     <Compile Include="Core\Models\Genre.cs" />
@@ -256,115 +257,118 @@
     <Compile Include="Core\Models\Rental.cs" />
     <Compile Include="Core\Repositories\ICustomerRepository.cs" />
     <Compile Include="Core\Repositories\IGenreRepository.cs" />
+    <Compile Include="Core\Repositories\IMembershipTypeRepository.cs" />
     <Compile Include="Core\Repositories\IMovieRepository.cs" />
+    <Compile Include="Core\Repositories\IRentalRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
-    <Compile Include="Core\Repositories\IUnitOfWork.cs" />
     <Compile Include="Core\ValidationAttributes\Min18YearsIfAMember.cs" />
+    <Compile Include="Core\ViewModels\AddPhoneNumberViewModel.cs" />
+    <Compile Include="Core\ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="Core\ViewModels\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="Core\ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Core\ViewModels\ExternalLoginListViewModel.cs" />
+    <Compile Include="Core\ViewModels\FactorViewModel.cs" />
+    <Compile Include="Core\ViewModels\ForgotPasswordViewModel.cs" />
+    <Compile Include="Core\ViewModels\ForgotViewModel.cs" />
+    <Compile Include="Core\ViewModels\IndexViewModel.cs" />
+    <Compile Include="Core\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Core\ViewModels\ManageLoginsViewModel.cs" />
+    <Compile Include="Core\ViewModels\MovieFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\RandomMovieViewModel.cs" />
+    <Compile Include="Core\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Core\ViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="Core\ViewModels\SendCodeViewModel.cs" />
+    <Compile Include="Core\ViewModels\SetPasswordViewModel.cs" />
+    <Compile Include="Core\ViewModels\VerifyCodeViewModel.cs" />
+    <Compile Include="Core\ViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="DQF\Indexers.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120333082_InitialModel.cs" />
-    <Compile Include="Migrations\201611120333082_InitialModel.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120333082_InitialModel.cs" />
+    <Compile Include="Persistence\Migrations\201611120333082_InitialModel.Designer.cs">
       <DependentUpon>201611120333082_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120345594_AddIsSubsribedToCustomer.cs" />
-    <Compile Include="Migrations\201611120345594_AddIsSubsribedToCustomer.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120345594_AddIsSubsribedToCustomer.cs" />
+    <Compile Include="Persistence\Migrations\201611120345594_AddIsSubsribedToCustomer.Designer.cs">
       <DependentUpon>201611120345594_AddIsSubsribedToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120356282_AddMembershipType.cs" />
-    <Compile Include="Migrations\201611120356282_AddMembershipType.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120356282_AddMembershipType.cs" />
+    <Compile Include="Persistence\Migrations\201611120356282_AddMembershipType.Designer.cs">
       <DependentUpon>201611120356282_AddMembershipType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120410575_PopulateMembershipType.cs" />
-    <Compile Include="Migrations\201611120410575_PopulateMembershipType.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120410575_PopulateMembershipType.cs" />
+    <Compile Include="Persistence\Migrations\201611120410575_PopulateMembershipType.Designer.cs">
       <DependentUpon>201611120410575_PopulateMembershipType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120435553_AddConvinsionToNameInCustomersTable.cs" />
-    <Compile Include="Migrations\201611120435553_AddConvinsionToNameInCustomersTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120435553_AddConvinsionToNameInCustomersTable.cs" />
+    <Compile Include="Persistence\Migrations\201611120435553_AddConvinsionToNameInCustomersTable.Designer.cs">
       <DependentUpon>201611120435553_AddConvinsionToNameInCustomersTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120526276_AddNameToMembershipType.cs" />
-    <Compile Include="Migrations\201611120526276_AddNameToMembershipType.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120526276_AddNameToMembershipType.cs" />
+    <Compile Include="Persistence\Migrations\201611120526276_AddNameToMembershipType.Designer.cs">
       <DependentUpon>201611120526276_AddNameToMembershipType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120527519_PopulateNameInMembershipType.cs" />
-    <Compile Include="Migrations\201611120527519_PopulateNameInMembershipType.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120527519_PopulateNameInMembershipType.cs" />
+    <Compile Include="Persistence\Migrations\201611120527519_PopulateNameInMembershipType.Designer.cs">
       <DependentUpon>201611120527519_PopulateNameInMembershipType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120554448_AddBirthdateToCustomers.cs" />
-    <Compile Include="Migrations\201611120554448_AddBirthdateToCustomers.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120554448_AddBirthdateToCustomers.cs" />
+    <Compile Include="Persistence\Migrations\201611120554448_AddBirthdateToCustomers.Designer.cs">
       <DependentUpon>201611120554448_AddBirthdateToCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120557322_MakeBirthdateNullableInCustomers.cs" />
-    <Compile Include="Migrations\201611120557322_MakeBirthdateNullableInCustomers.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120557322_MakeBirthdateNullableInCustomers.cs" />
+    <Compile Include="Persistence\Migrations\201611120557322_MakeBirthdateNullableInCustomers.Designer.cs">
       <DependentUpon>201611120557322_MakeBirthdateNullableInCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120606452_AddGenresAndModifyMovies.cs" />
-    <Compile Include="Migrations\201611120606452_AddGenresAndModifyMovies.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120606452_AddGenresAndModifyMovies.cs" />
+    <Compile Include="Persistence\Migrations\201611120606452_AddGenresAndModifyMovies.Designer.cs">
       <DependentUpon>201611120606452_AddGenresAndModifyMovies.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611120609174_PopulateGenres.cs" />
-    <Compile Include="Migrations\201611120609174_PopulateGenres.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611120609174_PopulateGenres.cs" />
+    <Compile Include="Persistence\Migrations\201611120609174_PopulateGenres.Designer.cs">
       <DependentUpon>201611120609174_PopulateGenres.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611130857491_ChangeBirthdateToNotNull.cs" />
-    <Compile Include="Migrations\201611130857491_ChangeBirthdateToNotNull.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611130857491_ChangeBirthdateToNotNull.cs" />
+    <Compile Include="Persistence\Migrations\201611130857491_ChangeBirthdateToNotNull.Designer.cs">
       <DependentUpon>201611130857491_ChangeBirthdateToNotNull.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611130901334_ChangeBirthdateToNull.cs" />
-    <Compile Include="Migrations\201611130901334_ChangeBirthdateToNull.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611130901334_ChangeBirthdateToNull.cs" />
+    <Compile Include="Persistence\Migrations\201611130901334_ChangeBirthdateToNull.Designer.cs">
       <DependentUpon>201611130901334_ChangeBirthdateToNull.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611131329373_SetNameNotNullInMovies.cs" />
-    <Compile Include="Migrations\201611131329373_SetNameNotNullInMovies.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611131329373_SetNameNotNullInMovies.cs" />
+    <Compile Include="Persistence\Migrations\201611131329373_SetNameNotNullInMovies.Designer.cs">
       <DependentUpon>201611131329373_SetNameNotNullInMovies.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611241057156_AddRentals.cs" />
-    <Compile Include="Migrations\201611241057156_AddRentals.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611241057156_AddRentals.cs" />
+    <Compile Include="Persistence\Migrations\201611241057156_AddRentals.Designer.cs">
       <DependentUpon>201611241057156_AddRentals.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611241309087_AddNumberAvailableToMovies.cs" />
-    <Compile Include="Migrations\201611241309087_AddNumberAvailableToMovies.Designer.cs">
+    <Compile Include="Persistence\Migrations\201611241309087_AddNumberAvailableToMovies.cs" />
+    <Compile Include="Persistence\Migrations\201611241309087_AddNumberAvailableToMovies.Designer.cs">
       <DependentUpon>201611241309087_AddNumberAvailableToMovies.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612032309581_ChangeDataAnnotationsForMoviesTable.cs" />
-    <Compile Include="Migrations\201612032309581_ChangeDataAnnotationsForMoviesTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201612032309581_ChangeDataAnnotationsForMoviesTable.cs" />
+    <Compile Include="Persistence\Migrations\201612032309581_ChangeDataAnnotationsForMoviesTable.Designer.cs">
       <DependentUpon>201612032309581_ChangeDataAnnotationsForMoviesTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\EntityConfigurations\CustomerConfigurations.cs" />
     <Compile Include="Persistence\EntityConfigurations\MovieConfigurations.cs" />
     <Compile Include="Persistence\EntityConfigurations\RentalConfigurations.cs" />
     <Compile Include="Persistence\Repositories\CustomerRepository.cs" />
     <Compile Include="Persistence\Repositories\GenreRepository.cs" />
+    <Compile Include="Persistence\Repositories\MembershipTypeRepository.cs" />
     <Compile Include="Persistence\Repositories\MovieRepository.cs" />
+    <Compile Include="Persistence\Repositories\RentalRepository.cs" />
     <Compile Include="Persistence\Repositories\Repository.cs" />
-    <Compile Include="Persistence\Repositories\UnitOfWork.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
-    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\ConfigureTwoFactorViewModel.cs" />
-    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
-    <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
-    <Compile Include="ViewModels\FactorViewModel.cs" />
-    <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
-    <Compile Include="ViewModels\ForgotViewModel.cs" />
-    <Compile Include="ViewModels\IndexViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ManageLoginsViewModel.cs" />
-    <Compile Include="ViewModels\MovieFormViewModel.cs" />
-    <Compile Include="ViewModels\RandomMovieViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\SendCodeViewModel.cs" />
-    <Compile Include="ViewModels\SetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
-    <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.html" />
@@ -664,55 +668,55 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611120333082_InitialModel.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120333082_InitialModel.resx">
       <DependentUpon>201611120333082_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120345594_AddIsSubsribedToCustomer.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120345594_AddIsSubsribedToCustomer.resx">
       <DependentUpon>201611120345594_AddIsSubsribedToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120356282_AddMembershipType.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120356282_AddMembershipType.resx">
       <DependentUpon>201611120356282_AddMembershipType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120410575_PopulateMembershipType.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120410575_PopulateMembershipType.resx">
       <DependentUpon>201611120410575_PopulateMembershipType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120435553_AddConvinsionToNameInCustomersTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120435553_AddConvinsionToNameInCustomersTable.resx">
       <DependentUpon>201611120435553_AddConvinsionToNameInCustomersTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120526276_AddNameToMembershipType.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120526276_AddNameToMembershipType.resx">
       <DependentUpon>201611120526276_AddNameToMembershipType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120527519_PopulateNameInMembershipType.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120527519_PopulateNameInMembershipType.resx">
       <DependentUpon>201611120527519_PopulateNameInMembershipType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120554448_AddBirthdateToCustomers.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120554448_AddBirthdateToCustomers.resx">
       <DependentUpon>201611120554448_AddBirthdateToCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120557322_MakeBirthdateNullableInCustomers.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120557322_MakeBirthdateNullableInCustomers.resx">
       <DependentUpon>201611120557322_MakeBirthdateNullableInCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120606452_AddGenresAndModifyMovies.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120606452_AddGenresAndModifyMovies.resx">
       <DependentUpon>201611120606452_AddGenresAndModifyMovies.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611120609174_PopulateGenres.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611120609174_PopulateGenres.resx">
       <DependentUpon>201611120609174_PopulateGenres.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611130857491_ChangeBirthdateToNotNull.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611130857491_ChangeBirthdateToNotNull.resx">
       <DependentUpon>201611130857491_ChangeBirthdateToNotNull.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611130901334_ChangeBirthdateToNull.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611130901334_ChangeBirthdateToNull.resx">
       <DependentUpon>201611130901334_ChangeBirthdateToNull.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611131329373_SetNameNotNullInMovies.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611131329373_SetNameNotNullInMovies.resx">
       <DependentUpon>201611131329373_SetNameNotNullInMovies.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611241057156_AddRentals.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611241057156_AddRentals.resx">
       <DependentUpon>201611241057156_AddRentals.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611241309087_AddNumberAvailableToMovies.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201611241309087_AddNumberAvailableToMovies.resx">
       <DependentUpon>201611241309087_AddNumberAvailableToMovies.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612032309581_ChangeDataAnnotationsForMoviesTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201612032309581_ChangeDataAnnotationsForMoviesTable.resx">
       <DependentUpon>201612032309581_ChangeDataAnnotationsForMoviesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

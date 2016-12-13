@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using TotaMoviesRental.Core.Models;
 using TotaMoviesRental.Core.ValidationAttributes;
 
-namespace TotaMoviesRental.ViewModels
+namespace TotaMoviesRental.Core.ViewModels
 {
     public class CustomerFormViewModel
     {
